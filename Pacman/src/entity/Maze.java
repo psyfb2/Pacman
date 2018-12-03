@@ -1,4 +1,4 @@
-package sample;
+package entity;
 
 import javafx.scene.Group;
 
@@ -18,7 +18,7 @@ public class Maze {
     /**
      * Constructor
      */
-    Maze() {
+    public Maze() {
         obstacles = new HashSet<>();
     }
 

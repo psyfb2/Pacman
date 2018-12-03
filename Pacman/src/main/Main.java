@@ -1,10 +1,8 @@
-package sample;
+package main;
 
 /*
  * TODO
  * 2. break down large classes so each class has one responsibility
- * 3. Separate classes into different packages
- * 4. create resources folder 
  */
 
 import javafx.application.Application;
@@ -13,6 +11,7 @@ import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
+import manager.GameManager;
 
 public class Main extends Application {
 

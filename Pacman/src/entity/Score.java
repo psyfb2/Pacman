@@ -1,4 +1,4 @@
-package sample;
+package entity;
 
 
 
@@ -20,7 +20,7 @@ public class Score {
      * Constructor initialises score and life Text objects and add them to the root
      * @param root Group object to add Text to
      */
-    Score(Group root) {
+    public Score(Group root) {
         this.score = new Text(BarObstacle.THICKNESS * 4, BarObstacle.THICKNESS * 28, "Score: 0");
         this.lifes = new Text(BarObstacle.THICKNESS * 20, BarObstacle.THICKNESS * 28,"Lifes: 3");
         score.setFill(Color.MAGENTA);

@@ -1,10 +1,11 @@
-package sample;
+package entity;
 
 
 
 import javafx.animation.AnimationTimer;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import manager.GameManager;
 
 import java.util.Random;
 

@@ -1,4 +1,4 @@
-package sample;
+package manager;
 
 
 
@@ -12,6 +12,8 @@ import javafx.scene.text.Font;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
+
+import entity.*;
 
 /**
  * Provides methods to draw, manage and animate the game
@@ -37,7 +39,7 @@ public class GameManager {
     /**
      * Constructor to initialise gameManager
      */
-    GameManager(Group root) {
+    public GameManager(Group root) {
         this.root = root;
         this.maze = new Maze();
         this.pacman = new Pacman(2.5 * BarObstacle.THICKNESS, 2.5 * BarObstacle.THICKNESS);
