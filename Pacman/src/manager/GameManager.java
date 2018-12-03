@@ -73,8 +73,8 @@ public class GameManager {
         this.pacman.setCenterY(2.5 * BarObstacle.THICKNESS);
         lifes--;
         score -= 10;
-        this.scoreBoard.lifes.setText("Lifes: " + this.lifes);
-        this.scoreBoard.score.setText("Score: " + this.score);
+        this.scoreBoard.getLifes().setText("Lifes: " + this.lifes);
+        this.scoreBoard.getScore().setText("Score: " + this.score);
         if (lifes == 0) {
             this.endGame();
         }
@@ -94,8 +94,8 @@ public class GameManager {
         endGame.setY(BarObstacle.THICKNESS * 28);
         endGame.setFont(Font.font("Arial", 40));
         endGame.setFill(Color.ROYALBLUE);
-        root.getChildren().remove(this.scoreBoard.score);
-        root.getChildren().remove(this.scoreBoard.lifes);
+        root.getChildren().remove(this.scoreBoard.getScore());
+        root.getChildren().remove(this.scoreBoard.getLifes());
         root.getChildren().add(endGame);
     }
 
@@ -397,7 +397,7 @@ public class GameManager {
                     cookie.hide();
                 }
             }
-            this.scoreBoard.score.setText("Score: " + this.score);
+            this.scoreBoard.getScore().setText("Score: " + this.score);
             if (this.cookiesEaten == this.cookieSet.size()) {
                 this.endGame();
             }

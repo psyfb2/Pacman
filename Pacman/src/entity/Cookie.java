@@ -14,7 +14,8 @@ import javafx.scene.shape.Circle;
  */
 public class Cookie extends Circle {
 
-    private int value; // score increased by this value each time circle is consumed
+	// score increased by this value each time circle is consumed
+    private int value; 
 
     /**
      * @param x x coordinate

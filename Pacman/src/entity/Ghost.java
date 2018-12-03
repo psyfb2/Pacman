@@ -16,12 +16,12 @@ import java.util.Random;
  */
 public class Ghost extends Rectangle implements Runnable {
 
-	// TODO should be private?
-    String direction;
-    GameManager gameManager;
-    Maze maze;
-    AnimationTimer animation;
-    int timesWalked;
+	// private to enforce encapsulation
+    private String direction;
+    private GameManager gameManager;
+    private Maze maze;
+    private AnimationTimer animation;
+    private int timesWalked;
     
     /**
      * Constructor

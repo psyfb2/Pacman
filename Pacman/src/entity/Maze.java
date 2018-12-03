@@ -11,10 +11,9 @@ import java.util.Set;
  */
 public class Maze { 
 
-	// TODO should be private?
-    public Set<BarObstacle> obstacles;
+	// private to enhance encapsulation
+    private Set<BarObstacle> obstacles;
 
-    // TODO set constructor to public?
     /**
      * Constructor
      */

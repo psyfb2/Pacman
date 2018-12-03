@@ -3,6 +3,7 @@ package main;
 /*
  * TODO
  * 2. break down large classes so each class has one responsibility
+ * 3. improve encapsulation
  */
 
 import javafx.application.Application;
