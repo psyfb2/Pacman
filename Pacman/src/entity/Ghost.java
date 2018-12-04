@@ -1,13 +1,10 @@
 package entity;
 
-
-
 import javafx.animation.AnimationTimer;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import manager.GameManager;
-
-import java.util.Random;
+import random.RandomDirection;
 
 /**
  * Represents a ghost within the pacman game. 
@@ -22,6 +19,7 @@ public class Ghost extends Rectangle implements Runnable {
     private Maze maze;
     private AnimationTimer animation;
     private int timesWalked;
+    private RandomDirection rand;
     
     /**
      * Constructor
@@ -41,32 +39,8 @@ public class Ghost extends Rectangle implements Runnable {
         this.setFill(color);
         this.timesWalked = 0;
         this.direction = "down";
+        this.rand = new RandomDirection();
         this.createAnimation();
-    }
-
-    /**
-     * Generates a random direction.
-     * Used within createAnimation() method.
-     * @param exclude1 direction to exclude, should be either "left", "right", "up", "down"
-     * @param exclude2 second direction to exclude, should be either "left", "right", "up", "down"
-     * @return a random direction which is either "left", "right", "up", "down"
-     * and the random direction is not equal to exclude1 or exclude2
-     */
-    private String getRandomDirection(String exclude1, String exclude2) { 
-        String[] directions = {"left", "right", "up", "down"};
-        int rnd = new Random().nextInt(directions.length);
-        while (directions[rnd].equals(exclude1) || directions[rnd].equals(exclude2)) {
-            rnd = new Random().nextInt(directions.length);
-        }
-        return directions[rnd];
-    }
-
-    /**
-     * @return random boolean value
-     */
-    private boolean getRandomBoolean() {
-        Random rand = new Random();
-        return rand.nextBoolean();
     }
 
     /**
@@ -203,28 +177,28 @@ public class Ghost extends Rectangle implements Runnable {
                     case "left":
                         moveUntilYouCant("left", "down", leftEdge, topEdge, rightEdge, bottomEdge, padding);
                         if (timesWalked > walkAtLeast) {
-                            checkIftheresPathToGo(getRandomDirection("left", "right"));
+                            checkIftheresPathToGo(rand.getRandomDirection("left", "right"));
                             timesWalked = 0;
                         }
                         break;
                     case "right":
                         moveUntilYouCant("right", "up", leftEdge, topEdge, rightEdge, bottomEdge, padding);
                         if (timesWalked > walkAtLeast) {
-                            checkIftheresPathToGo(getRandomDirection("left", "right"));
+                            checkIftheresPathToGo(rand.getRandomDirection("left", "right"));
                              timesWalked = 0;
                         }
                         break;
                     case "up":
                         moveUntilYouCant("up", "left", leftEdge, topEdge, rightEdge, bottomEdge, padding);
                         if (timesWalked > walkAtLeast) {
-                            checkIftheresPathToGo(getRandomDirection("up", "down"));
+                            checkIftheresPathToGo(rand.getRandomDirection("up", "down"));
                             timesWalked = 0;
                         }
                         break;
                     case "down":
                         moveUntilYouCant("down", "right", leftEdge, topEdge, rightEdge, bottomEdge, padding);
                         if (timesWalked > walkAtLeast) {
-                            checkIftheresPathToGo(getRandomDirection("up", "down"));
+                            checkIftheresPathToGo(rand.getRandomDirection("up", "down"));
                             timesWalked = 0;
                         }
                         break;

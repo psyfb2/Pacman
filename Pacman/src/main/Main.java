@@ -3,7 +3,6 @@ package main;
 /*
  * TODO
  * 2. break down large classes so each class has one responsibility
- * 3. improve encapsulation
  */
 
 import javafx.application.Application;
@@ -16,6 +15,9 @@ import manager.GameManager;
 
 public class Main extends Application {
 
+	public static final int WIDTH = 1225;
+	public static final int HEIGHT = 600;
+	
     @Override
     public void start(Stage theStage) throws Exception{
 //        Parent root = FXMLLoader.load(getClass().getResource("pacman.fxml"));
@@ -25,7 +27,7 @@ public class Main extends Application {
         Scene theScene = new Scene( root );
         theStage.setScene( theScene );
 
-        Canvas canvas = new Canvas( 1225, 600 );
+        Canvas canvas = new Canvas( WIDTH, HEIGHT );
         root.getChildren().add( canvas );
         GameManager gameManager = new GameManager(root);
 
