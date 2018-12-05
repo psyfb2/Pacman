@@ -122,19 +122,8 @@ public class GameManager {
         maze.addAllObstaclesToRoot(root);
     	root.getChildren().addAll(cookieSet);
         root.getChildren().add(this.pacman);
-        //this.generateGhosts();
         root.getChildren().addAll(this.ghosts);
         this.scoreBoard = new Score(root);
-    }
-
-    /**
-     * Generates four ghosts for the pacman!
-     */
-    public void generateGhosts() {
-        this.ghosts.add(new Ghost(18.5 * BarObstacle.THICKNESS, 12.5 * BarObstacle.THICKNESS, Color.DEEPPINK, maze, this));
-        this.ghosts.add(new Ghost(22.5 * BarObstacle.THICKNESS, 12.5 * BarObstacle.THICKNESS, Color.GREENYELLOW, maze, this));
-        this.ghosts.add(new Ghost(28.5 * BarObstacle.THICKNESS, 12.5 * BarObstacle.THICKNESS, Color.BLACK, maze, this));
-        this.ghosts.add(new Ghost(28.5 * BarObstacle.THICKNESS, 9.5 * BarObstacle.THICKNESS, Color.SPRINGGREEN, maze, this));
     }
 
     /**

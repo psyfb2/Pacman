@@ -11,6 +11,7 @@ import entity.Ghost;
 import entity.Maze;
 import entity.Pacman;
 import javafx.scene.paint.Color;
+import random.RandomColor;
 
 /**
  * Class to load maps from system files
@@ -18,6 +19,14 @@ import javafx.scene.paint.Color;
  */
 public class MapLoader {
 	BufferedReader mapTxt;
+	RandomColor randomColor;
+	
+	/**
+	 * Constructor
+	 */
+	public MapLoader() {
+		randomColor = new RandomColor();
+	}
 	
 	/**
 	 * Reads a map from file then configures the maze, cookieSet, ghostSet and pacman to contain the correct information.
@@ -30,7 +39,8 @@ public class MapLoader {
 	 */
 	public void loadMap(String fileName, Maze maze, Set<Cookie> cookieSet, Set<Ghost> ghostSet, Pacman pacman, GameManager gameManager) {
 		try {
-			BufferedReader mapTxt = new BufferedReader(new FileReader(fileName));
+			mapTxt = new BufferedReader(new FileReader(fileName));
+			randomColor.reset();
 			String line;
 			int row = 0;
 			// map is split up into 25x25px blocks, the map is 1225x500px
@@ -51,7 +61,7 @@ public class MapLoader {
 							pacman.setCenterY(BarObstacle.THICKNESS * row + 12.5);
 							break;
 						case 'g': // ghost
-							ghostSet.add(new Ghost(BarObstacle.THICKNESS * column, BarObstacle.THICKNESS * row, Color.DEEPPINK, maze, gameManager));
+							ghostSet.add(new Ghost(BarObstacle.THICKNESS * (column - 0.5), BarObstacle.THICKNESS * (row - 0.5), randomColor.generateRandomColor(), maze, gameManager));
 							break;
 					}
 				}
