@@ -69,10 +69,17 @@ public class Maze {
     }
     
     /**
-     * Displays all BarObstacles contained within the internal BarObstacle
+     * Displays all BarObstacles contained within the internal BarObstacle set
      * @param root
      */
     public void addAllObstaclesToRoot(Group root) {
     	root.getChildren().addAll(obstacles);
+    }
+    
+    /**
+     * Clears internal barObstacle set to contain no obstacles
+     */
+    public void clearObstacles() {
+    	obstacles.clear();
     }
 }

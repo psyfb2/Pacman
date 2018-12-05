@@ -7,6 +7,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
+import java.io.FileNotFoundException;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -33,6 +34,7 @@ public class GameManager {
     private boolean gameEnded;
     private int cookiesEaten;
     private MapLoader mapLoader;
+    private final String pacmanFileName = "./recources/images/pacman.png";
 
     /**
      * Constructor to initialise gameManager
@@ -40,7 +42,11 @@ public class GameManager {
     public GameManager(Group root) {
         this.root = root;
         this.maze = new Maze();
-        this.pacman = new Pacman(2.5 * BarObstacle.THICKNESS, 2.5 * BarObstacle.THICKNESS);
+        try {
+			this.pacman = new Pacman(2.5 * BarObstacle.THICKNESS, 2.5 * BarObstacle.THICKNESS, 25, pacmanFileName);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
         this.cookieSet = new HashSet<>();
         this.ghosts = new HashSet<>();
         this.leftPacmanAnimation = this.createAnimation("left");
@@ -83,7 +89,7 @@ public class GameManager {
      */
     private void endGame() {
         this.gameEnded = true;
-        root.getChildren().remove(pacman);
+        pacman.unDisplayPacman(root);
         for (Ghost ghost : ghosts) {
             root.getChildren().remove(ghost);
         }
@@ -106,6 +112,7 @@ public class GameManager {
             root.getChildren().clear();
             this.cookieSet.clear();
             this.ghosts.clear();
+            maze.clearObstacles();
             this.drawBoard();
             this.lifes = 3;
             this.score = 0;
@@ -118,10 +125,10 @@ public class GameManager {
      * Draws the board of the game with the cookies and the Pacman
      */
     public void drawBoard() {
-    	mapLoader.loadMap("map1.txt", maze, cookieSet, ghosts, pacman, this);
+    	mapLoader.loadMap("./recources/maps/map1.txt", maze, cookieSet, ghosts, pacman, this);
         maze.addAllObstaclesToRoot(root);
     	root.getChildren().addAll(cookieSet);
-        root.getChildren().add(this.pacman);
+        pacman.displayPacman(root);
         root.getChildren().addAll(this.ghosts);
         this.scoreBoard = new Score(root);
     }
@@ -190,6 +197,7 @@ public class GameManager {
                 case "left":
                     if (!maze.isTouching(pacman.getCenterX() - pacman.getRadius(), pacman.getCenterY(), 15)) {
                         pacman.setCenterX(pacman.getCenterX() - step);
+                        pacman.facePacmanLeft();
                         checkCookieCoalition(pacman, "x");
                         checkGhostCoalition();
                     }
@@ -197,6 +205,7 @@ public class GameManager {
                 case "right":
                     if (!maze.isTouching(pacman.getCenterX() + pacman.getRadius(), pacman.getCenterY(), 15)) {
                         pacman.setCenterX(pacman.getCenterX() + step);
+                        pacman.facePacmanRight();
                         checkCookieCoalition(pacman, "x");
                         checkGhostCoalition();
                     }
@@ -204,6 +213,7 @@ public class GameManager {
                 case "up":
                     if (!maze.isTouching(pacman.getCenterX(), pacman.getCenterY() - pacman.getRadius(), 15)) {
                         pacman.setCenterY(pacman.getCenterY() - step);
+                        pacman.facePacmanUp();
                         checkCookieCoalition(pacman, "y");
                         checkGhostCoalition();
                     }
@@ -211,6 +221,7 @@ public class GameManager {
                 case "down":
                    if (!maze.isTouching(pacman.getCenterX(), pacman.getCenterY() + pacman.getRadius(), 15)) {
                        pacman.setCenterY(pacman.getCenterY() + step);
+                       pacman.facePacmanDown();
                        checkCookieCoalition(pacman, "y");
                        checkGhostCoalition();
                    }

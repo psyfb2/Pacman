@@ -10,7 +10,6 @@ import entity.Cookie;
 import entity.Ghost;
 import entity.Maze;
 import entity.Pacman;
-import javafx.scene.paint.Color;
 import random.RandomColor;
 
 /**
