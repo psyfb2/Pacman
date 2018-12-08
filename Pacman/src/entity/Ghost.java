@@ -114,15 +114,15 @@ public class Ghost implements Runnable {
      * @param padding number of pixels to pad around the ghost when checking for collisions
      */
     private void moveUntilYouCant(String whereToGo, String whereToChangeTo, double leftEdge, double topEdge, double rightEdge, double bottomEdge, double padding) {
-        double step = 5;
+        double step = 10;
         switch (whereToGo) {
             case "left":
             	// if the maze is not touching the left of the ghost then move ghost to the left by 5 pixels
-                if (!maze.isTouching(leftEdge, topEdge, padding)) {
+                if (!maze.isTouchingIncludingGhostBarriers(leftEdge, topEdge, padding)) {
                     setX(leftEdge - step);
                 } else {
                 	// else move ghost to the right by 1 pixel until it touches the maze
-                    while (maze.isTouching(getX(), getY(), padding)) {
+                    while (maze.isTouchingIncludingGhostBarriers(getX(), getY(), padding)) {
                         setX(getX() + 1); 
                     }
                     // when ghost touches the maze change its direction
@@ -130,30 +130,30 @@ public class Ghost implements Runnable {
                 }
                 break;
             case "right":
-                if (!maze.isTouching(rightEdge, topEdge, padding)) {
+                if (!maze.isTouchingIncludingGhostBarriers(rightEdge, topEdge, padding)) {
                     setX(leftEdge + step);
                 } else {
-                    while (maze.isTouching(getX() + getWidth(), getY(), padding)) {
+                    while (maze.isTouchingIncludingGhostBarriers(getX() + getWidth(), getY(), padding)) {
                         setX(getX() - 1);
                     }
                     direction = whereToChangeTo;
                 }
                 break;
             case "up":
-                if (!maze.isTouching(leftEdge, topEdge, padding)) {
+                if (!maze.isTouchingIncludingGhostBarriers(leftEdge, topEdge, padding)) {
                     setY(topEdge - step);
                 } else {
-                    while (maze.isTouching(getX(), getY(), padding)) {
+                    while (maze.isTouchingIncludingGhostBarriers(getX(), getY(), padding)) {
                         setY(getY() + 1);
                     }
                     direction = "left";
                 }
                 break;
             case "down":
-                if (!maze.isTouching(leftEdge, bottomEdge, padding)) {
+                if (!maze.isTouchingIncludingGhostBarriers(leftEdge, bottomEdge, padding)) {
                     setY(topEdge + step);
                 } else {
-                    while (maze.isTouching(getX(), getY() + getHeight(), padding)) {
+                    while (maze.isTouchingIncludingGhostBarriers(getX(), getY() + getHeight(), padding)) {
                         setY(getY() - 1);
                     }
                     direction = "right";

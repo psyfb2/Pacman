@@ -6,6 +6,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import main.Main;
 
 import java.io.FileNotFoundException;
 import java.util.HashSet;
@@ -195,6 +196,7 @@ public class GameManager {
         {
             public void handle(long currentNanoTime)
             {
+            checkPacmanEnterDoor();
             switch (direction) {
                 case "left":
                     if (!maze.isTouching(pacman.getCenterX() - pacman.getRadius(), pacman.getCenterY(), 15)) {
@@ -317,5 +319,13 @@ public class GameManager {
             }
         }
     }
-
+    
+    private void checkPacmanEnterDoor() {
+    	if(pacman.getCenterX() - pacman.getRadius() < 0) { // left edge
+    		pacman.setCenterX(Main.WIDTH - pacman.getRadius());
+    	} else if (pacman.getCenterX() + pacman.getRadius() > Main.WIDTH) { // right edge
+    		pacman.setCenterX(0 + pacman.getRadius());
+    	}
+    		
+    }
 }

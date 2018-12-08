@@ -13,22 +13,24 @@ public class Maze {
 
 	// private to enhance encapsulation
     private Set<BarObstacle> obstacles;
+    private Set<BarObstacle> ghostObstacles;
 
     /**
      * Constructor
      */
     public Maze() {
         obstacles = new HashSet<>();
+        ghostObstacles = new HashSet<>();
     }
-
+    
     /**
-     * Checks if point is touching any of the obstacles which make up the maze
-     * @param x x coordinate
+     * Checks if a point is touching a given BarObstacle Set
+	 * @param x x coordinate
      * @param y y coordinate
      * @param padding number of pixels to pad around the given coordinate
      * @return true if the point is touching any obstacles, else false
      */
-    public Boolean isTouching(double x, double y, double padding) {
+    private Boolean isTouchingSet(double x, double y, double padding, Set<BarObstacle> obstacles) {
         for (BarObstacle barObstacle:obstacles) {
             if (
                 x >= barObstacle.getX() - padding &&
@@ -43,7 +45,30 @@ public class Maze {
     }
 
     /**
-     * lets you know if there's an obstacle between two coordinates
+     * Checks if a point is touching any of the obstacles (excluding ghost bar obstacles) which make up the maze
+     * @param x x coordinate
+     * @param y y coordinate
+     * @param padding number of pixels to pad around the given coordinate
+     * @return true if the point is touching any obstacles, else false
+     */
+    public Boolean isTouching(double x, double y, double padding) {
+        return this.isTouchingSet(x, y, padding, obstacles);
+    }
+    
+    /**
+     * Checks if a point is touching any of the obstacles (including ghost bar obstacles) which make up the maze
+     * @param x x coordinate
+     * @param y y coordinate
+     * @param padding number of pixels to pad around the given coordinate
+     * @return true if the point is touching any obstacles, else false
+     */
+    public boolean isTouchingIncludingGhostBarriers(double x, double y, double padding) {
+    	return this.isTouchingSet(x, y, padding, obstacles) || this.isTouchingSet(x, y, padding, ghostObstacles);
+    }
+
+
+    /**
+     * lets you know if there's an obstacle (including ghost barriers) between two coordinates
      * @param fromX x1 coordinate
      * @param toX x2 coordinate
      * @param fromY y1 coordinate
@@ -54,7 +79,7 @@ public class Maze {
         boolean isTouching = false;
         for (double i = fromX; i < toX; i++) {
             for (double j = fromY; j < toY; j++) {
-                if (this.isTouching(i, j, 0)) isTouching = true;
+                if (this.isTouchingIncludingGhostBarriers(i, j, 0)) isTouching = true;
             }
         }
         return isTouching;
@@ -69,7 +94,15 @@ public class Maze {
     }
     
     /**
-     * Displays all BarObstacles contained within the internal BarObstacle set
+     * Adds an invisible barObstacle which is intended to only be visible to ghosts
+     * @param o
+     */
+    public void addGhostObstacle(BarObstacle o) {
+    	this.ghostObstacles.add(o);
+    }
+    
+    /**
+     * Displays all BarObstacles (excluding ghost bar obstacles) contained within the internal BarObstacle set.
      * @param root
      */
     public void addAllObstaclesToRoot(Group root) {
@@ -77,9 +110,10 @@ public class Maze {
     }
     
     /**
-     * Clears internal barObstacle set to contain no obstacles
+     * Clears internal barObstacle set and ghost barObstacle to contain no obstacles
      */
     public void clearObstacles() {
     	obstacles.clear();
+    	ghostObstacles.clear();
     }
 }

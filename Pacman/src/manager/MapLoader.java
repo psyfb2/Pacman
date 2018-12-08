@@ -72,6 +72,9 @@ public class MapLoader {
 							ghostSet.add(new Ghost(BarObstacle.THICKNESS * (column - 0.5), BarObstacle.THICKNESS * (row - 0.5), maze, gameManager, "./recources/images/ghost" + ghostCounter + ".png"));
 							ghostCounter = (ghostCounter + 1) % maxNumberOfGhosts;
 							break;
+						case ':': // ghost bar obstacle (bar obstacle only stops the ghost and is invisible)
+							maze.addGhostObstacle(new BarObstacle(BarObstacle.THICKNESS * column, BarObstacle.THICKNESS * row));
+							break;
 					}
 				}
 				row++;
