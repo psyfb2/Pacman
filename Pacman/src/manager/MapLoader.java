@@ -10,21 +10,30 @@ import entity.Cookie;
 import entity.Ghost;
 import entity.Maze;
 import entity.Pacman;
-import random.RandomColor;
 
 /**
  * Class to load maps from system files
  * @author psyfb2
  */
 public class MapLoader {
-	BufferedReader mapTxt;
-	RandomColor randomColor;
+	private BufferedReader mapTxt;
+	private int maxNumberOfGhosts;
+	
+	
+	/**
+	 * Default Constructor, maxNumberOfGhosts is 5.
+	 */
+	public MapLoader() {
+		this.maxNumberOfGhosts = 5;
+	}
 	
 	/**
 	 * Constructor
+	 * @param maxNumberOfGhosts The class will load ghost images from /recources/images. Ghosts should be names ghost0, ghost1, ghost2 etc (make sure first ghost has name "ghost0").
+	 * Ghost images should also be .png files.
 	 */
-	public MapLoader() {
-		randomColor = new RandomColor();
+	public MapLoader(int maxNumberOfGhosts) {
+		this.maxNumberOfGhosts = maxNumberOfGhosts;
 	}
 	
 	/**
@@ -39,8 +48,8 @@ public class MapLoader {
 	public void loadMap(String fileName, Maze maze, Set<Cookie> cookieSet, Set<Ghost> ghostSet, Pacman pacman, GameManager gameManager) {
 		try {
 			mapTxt = new BufferedReader(new FileReader(fileName));
-			randomColor.reset();
 			String line;
+			int ghostCounter = 0;
 			int row = 0;
 			// map is split up into 25x25px blocks, the map is 1225x500px
 			// so the map is 49x25 blocks
@@ -60,7 +69,8 @@ public class MapLoader {
 							pacman.setCenterY(BarObstacle.THICKNESS * row + 12.5);
 							break;
 						case 'g': // ghost
-							ghostSet.add(new Ghost(BarObstacle.THICKNESS * (column - 0.5), BarObstacle.THICKNESS * (row - 0.5), randomColor.generateRandomColor(), maze, gameManager));
+							ghostSet.add(new Ghost(BarObstacle.THICKNESS * (column - 0.5), BarObstacle.THICKNESS * (row - 0.5), maze, gameManager, "./recources/images/ghost" + ghostCounter + ".png"));
+							ghostCounter = (ghostCounter + 1) % maxNumberOfGhosts;
 							break;
 					}
 				}

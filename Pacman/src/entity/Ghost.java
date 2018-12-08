@@ -1,8 +1,12 @@
 package entity;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+
 import javafx.animation.AnimationTimer;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
+import javafx.scene.Group;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import manager.GameManager;
 import random.RandomDirection;
 
@@ -11,7 +15,7 @@ import random.RandomDirection;
  * Also has run method to animate the ghost within the maze.
  * @author psyfb2
  */
-public class Ghost extends Rectangle implements Runnable {
+public class Ghost implements Runnable {
 
 	// private to enforce encapsulation
     private String direction;
@@ -20,6 +24,7 @@ public class Ghost extends Rectangle implements Runnable {
     private AnimationTimer animation;
     private int timesWalked;
     private RandomDirection rand;
+    private ImageView imageView;
     
     /**
      * Constructor
@@ -28,22 +33,24 @@ public class Ghost extends Rectangle implements Runnable {
      * @param color colour of the ghost
      * @param maze maze in which the ghost will be in
      * @param gameManager gameManager in which the ghost will be in
+     * @throws FileNotFoundException if fileName is not found
      */
-    public Ghost(double x, double y, Color color, Maze maze, GameManager gameManager) {
+    public Ghost(double x, double y, Maze maze, GameManager gameManager, String fileName) throws FileNotFoundException {
+    	Image image = new Image(new FileInputStream(fileName));
+    	imageView = new ImageView(image);
+    	imageView.setFitWidth(50);
+    	imageView.setFitHeight(50);
         this.setX(x);
         this.setY(y);
         this.maze = maze;
         this.gameManager = gameManager;
-        this.setHeight(50);
-        this.setWidth(50);
-        this.setFill(color);
         this.timesWalked = 0;
         this.direction = "down";
         this.rand = new RandomDirection();
         this.createAnimation();
     }
 
-    /**
+	/**
      * Gets the animation for the ghost
      * @return animation
      */
@@ -94,7 +101,7 @@ public class Ghost extends Rectangle implements Runnable {
         }
     }
 
-    /**
+	/**
      * Moves the ghost in a direction, if the maze is blocking this direction
      * then move in the opposite direction until the ghost is obstructed by the maze.
      * Then set the direction to whereToChangeTo.
@@ -212,4 +219,56 @@ public class Ghost extends Rectangle implements Runnable {
     public void run() {
         this.animation.start();
     }
+    
+    public void displayGhost(Group root) {
+    	root.getChildren().add(imageView);
+    }
+    
+    public void unDisplayGhost(Group root) {
+    	root.getChildren().remove(imageView);
+    }
+    
+    /**
+     * @return Height in pixels of the ghost 
+     */
+    public double getHeight() {
+		return imageView.getFitHeight();
+	}
+
+	/**
+	 * @return Width in pixels of the ghost
+	 */
+	public double getWidth() {
+		return imageView.getFitWidth();
+	}
+
+	/**
+	 * @return Y coordinate of the ghost
+	 */
+	public double getY() {
+		return imageView.getY();
+	}
+
+	/**
+	 * @return X coordinate of the ghost
+	 */
+	public double getX() {
+		return imageView.getX();
+	}
+	
+    /**
+     * @param y Set Y coordinate of the ghost to this
+     */
+    public void setY(double y) {
+		imageView.setY(y);
+		
+	}
+
+	/**
+	 * @param x Set X coordinate of the ghost to this
+	 */
+	public void setX(double x) {
+		imageView.setX(x);
+		
+	}
 }

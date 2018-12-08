@@ -91,7 +91,7 @@ public class GameManager {
         this.gameEnded = true;
         pacman.unDisplayPacman(root);
         for (Ghost ghost : ghosts) {
-            root.getChildren().remove(ghost);
+            ghost.unDisplayGhost(root);
         }
         javafx.scene.text.Text endGame = new javafx.scene.text.Text("Game Over, press ESC to restart");
         endGame.setX(BarObstacle.THICKNESS * 3);
@@ -129,7 +129,9 @@ public class GameManager {
         maze.addAllObstaclesToRoot(root);
     	root.getChildren().addAll(cookieSet);
         pacman.displayPacman(root);
-        root.getChildren().addAll(this.ghosts);
+        for(Ghost ghost : ghosts) {
+        	ghost.displayGhost(root);
+        }
         this.scoreBoard = new Score(root);
     }
 
