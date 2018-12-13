@@ -31,10 +31,10 @@ public class Ghost implements Runnable {
      * Constructor
      * @param x x coordinate
      * @param y y coordinate
-     * @param color colour of the ghost
      * @param maze maze in which the ghost will be in
      * @param gameManager gameManager in which the ghost will be in
      * @param ghostSpeed how fast the ghosts should go, e.g. 5 is a good speed
+     * @param fileName File name for the ghost image
      * @throws FileNotFoundException if fileName is not found
      */
     public Ghost(double x, double y, Maze maze, GameManager gameManager, String fileName, int ghostSpeed) throws FileNotFoundException {

@@ -214,7 +214,6 @@ public class GameManager {
 
     /**
      * Draws the board of the game with the cookies and the Pacman
-     * @throws IOException 
      */
     public void drawBoard() {
     	try {

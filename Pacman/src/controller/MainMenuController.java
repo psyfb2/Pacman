@@ -74,7 +74,7 @@ public class MainMenuController {
 	/**
 	 * Call this method to pass data to this controller.
 	 * @param difficulty Difficulty of the pacman game, "easy", "medium" or "hard".
-	 * @param fileName File name of the map to load (e.g. "./recources/maps/cookieComplex.txt")
+	 * @param mapFileName File name of the map to load (e.g. "./recources/maps/cookieComplex.txt")
 	 * @param scoreFileName File name of the leaderboard for the provided map
 	 * @param mapName Name of the map (not a file name just a name to display to user)
 	 * @param color Color which the maze should have when the pacman game starts

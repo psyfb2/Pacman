@@ -1,1 +1,1 @@
-packageSearchIndex = [{"l":"entity"},{"l":"main"},{"l":"manager"}]
+packageSearchIndex = [{"l":"controller"},{"l":"entity"},{"l":"leaderboard"},{"l":"main"},{"l":"manager"},{"l":"random"}]

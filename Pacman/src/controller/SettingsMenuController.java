@@ -159,7 +159,6 @@ public class SettingsMenuController implements Initializable {
 	/**
 	 * Changes border color around Cookie Complex image to yellow and all other map borders to black (not visible).
 	 * Called when Cookie Complex map image is clicked.
-	 * @param e Event for the mouse click
 	 */
 	public void cookieComplexClicked() {
 		cookieComplexBorder.setStyle("-fx-border-color: yellow; -fx-border-style: solid; -fx-border-width: 6;");
@@ -173,7 +172,6 @@ public class SettingsMenuController implements Initializable {
 	/**
 	 * Changes border color around Ghost Town image to yellow and all other map borders to black (not visible).
 	 * Called when Ghost Town map image is clicked.
-	 * @param e Event for the mouse click
 	 */
 	public void ghostTownClicked() {
 		cookieComplexBorder.setStyle("-fx-border-color: black; -fx-border-style: solid; -fx-border-width: 6;");
@@ -187,7 +185,6 @@ public class SettingsMenuController implements Initializable {
 	/**
 	 * Changes border color around Greasy Grove image to yellow and all other map borders to black (not visible).
 	 * Called when Greasy Grove map image is clicked.
-	 * @param e Event for the mouse click
 	 */
 	public void greasyGroveClicked() {
 		cookieComplexBorder.setStyle("-fx-border-color: black; -fx-border-style: solid; -fx-border-width: 6;");
