@@ -1,25 +1,32 @@
 package manager;
 
 import javafx.animation.AnimationTimer;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import javafx.stage.Stage;
+import leaderboard.LeaderBoard;
+import leaderboard.PacmanLeaderBoard;
 import main.Main;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
 
+import controller.LeaderBoardMenuController;
 import entity.*;
 
 /**
- * Provides methods to draw, manage and animate the game
+ * Provides methods to draw, manage and animate the game.
  * @author psyfb2
  */
 public class GameManager {
-
     private Pacman pacman;
     private Group root;
     private Set<Cookie> cookieSet;
@@ -35,12 +42,25 @@ public class GameManager {
     private boolean gameEnded;
     private int cookiesEaten;
     private MapLoader mapLoader;
+    private int pacmanSpeed = 5;
+    private int ghostSpeed = 5;
+    private Color mazeColor;
+    private String mapFileName;
+    private String scoreFileName;
+    private String mapName;
+    private String difficulty;
     private final String pacmanFileName = "./recources/images/pacman.png";
 
     /**
      * Constructor to initialise gameManager
+     * @param root Used to display entities
+     * @param difficulty "easy", "medium" or "hard"
+     * @param mazeColor Color of BarObstacles within the maze
+     * @param mapFileName File where the map is stored
+     * @param scoreFileName File where the scoreboard for the map can be found
+     * @param mapName Name of the map. Not a file name just a name for the map so this can be displayed to the user (e.g. "Cookie Complex") 
      */
-    public GameManager(Group root) {
+    public GameManager(Group root, String difficulty, Color mazeColor, String mapFileName, String scoreFileName, String mapName) {
         this.root = root;
         this.maze = new Maze();
         try {
@@ -58,6 +78,33 @@ public class GameManager {
         this.score = 0;
         this.cookiesEaten = 0;
         this.mapLoader = new MapLoader();
+        this.difficulty = difficulty;
+        this.setSpeed(difficulty);
+        this.mazeColor = mazeColor;
+        this.mapFileName = mapFileName;
+        this.scoreFileName = scoreFileName;
+        this.mapName = mapName;
+    }
+    
+    /**
+     * easy - pacmanSpeed = 5, ghostSpeed = 5
+     * medium - pacmanSpeed = 4, ghostSpeed = 6
+     * hard - pacmanSpeed = 4, ghostSpeed = 8
+     * @param difficulty "easy", "medium" or "hard".
+     */
+    private void setSpeed(String difficulty) {
+    	if(difficulty.equals("easy")) {
+    		pacmanSpeed = 5;
+    		ghostSpeed = 5;
+    	}
+    	if(difficulty.equals("medium")) {
+    		pacmanSpeed = 4;
+    		ghostSpeed = 6;
+    	}
+    	if(difficulty.equals("hard")) {
+    		pacmanSpeed = 4;
+    		ghostSpeed = 8;
+    	}
     }
 
     /**
@@ -102,6 +149,49 @@ public class GameManager {
         root.getChildren().remove(this.scoreBoard.getScore());
         root.getChildren().remove(this.scoreBoard.getLifes());
         root.getChildren().add(endGame);
+		loadLeaderBoard();
+    }
+    
+    /**
+     * Creates new pop up window for the leaderboard.
+     * Score passed to the pop up window is influenced by the difficulty. "easy" -> score, "medium" -> score*2, "hard" -> score*4.
+     * @throws IOException "/fxml/mainMenu.fxml" not found or scoreFileName not found
+     */
+    private void loadLeaderBoard() {
+    	FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(getClass().getResource("/fxml/scoreBoard.fxml"));
+		Parent root;
+		try {
+			root = loader.load();
+		} catch (IOException e) {
+			e.printStackTrace();
+			System.out.println("Failed to load /fxml/scoreBoard.fxml");
+			return;
+		}
+		
+		LeaderBoard leaderBoard;
+		try {
+			leaderBoard = new PacmanLeaderBoard(scoreFileName, 5);
+		} catch (IOException e) {
+			e.printStackTrace();
+			System.out.println("Failed to load " + scoreFileName);
+			return;
+		}
+		
+		LeaderBoardMenuController c = loader.getController();
+		if(difficulty.equals("medium")) {
+			score = score << 1;
+		}
+		else if(difficulty.equals("hard")) {
+			score = score << 2;
+		}
+		c.init(leaderBoard, score, mapName, difficulty);
+		
+		Stage popUp = new Stage();
+		Scene popUpScene = new Scene(root);
+		popUpScene.getStylesheets().add(getClass().getResource("/fxml/style.css").toExternalForm());
+		popUp.setScene(popUpScene);
+		popUp.show();
     }
 
     /**
@@ -124,9 +214,16 @@ public class GameManager {
 
     /**
      * Draws the board of the game with the cookies and the Pacman
+     * @throws IOException 
      */
     public void drawBoard() {
-    	mapLoader.loadMap("./recources/maps/map1.txt", maze, cookieSet, ghosts, pacman, this);
+    	try {
+			mapLoader.loadMap(mapFileName, maze, cookieSet, ghosts, pacman, this, ghostSpeed, mazeColor);
+		} catch (IOException e) {
+			e.printStackTrace();
+			System.out.println("Error: Failed to load file " + mapFileName);
+			return;
+		}
         maze.addAllObstaclesToRoot(root);
     	root.getChildren().addAll(cookieSet);
         pacman.displayPacman(root);
@@ -134,10 +231,12 @@ public class GameManager {
         	ghost.displayGhost(root);
         }
         this.scoreBoard = new Score(root);
+        //root.getChildren().add(toMainMenu);
     }
 
     /**
      * Moves the pacman left, right, up or down and moves all ghosts.
+     * Also everytime pacman moves there is a 1% chance of a speed cookie spawning
      * @param event key press
      */
     public void movePacman(KeyEvent event) {
@@ -191,7 +290,7 @@ public class GameManager {
      * @return AnimationTimer to move the pacman 5 pixels in the specified direction, takes into account wall, cookie and ghost collisions
      */
     private AnimationTimer createAnimation(String direction) {
-        double step = 5;
+        double step = pacmanSpeed;
         return new AnimationTimer()
         {
             public void handle(long currentNanoTime)
@@ -291,7 +390,8 @@ public class GameManager {
                 }
             }
             this.scoreBoard.getScore().setText("Score: " + this.score);
-            if (this.cookiesEaten == this.cookieSet.size()) {
+            if (this.cookiesEaten == this.cookieSet.size() && !gameEnded) {
+            	System.out.println("Calling end game");
                 this.endGame();
             }
         }
@@ -326,6 +426,5 @@ public class GameManager {
     	} else if (pacman.getCenterX() + pacman.getRadius() > Main.WIDTH) { // right edge
     		pacman.setCenterX(0 + pacman.getRadius());
     	}
-    		
     }
 }

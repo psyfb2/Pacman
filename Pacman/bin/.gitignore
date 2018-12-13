@@ -1,6 +1,7 @@
-/sample/
-/entity/
-/main/
 /manager/
-/animation/
+/fxml/
 /random/
+/leaderboard/
+/main/
+/entity/
+/controller/

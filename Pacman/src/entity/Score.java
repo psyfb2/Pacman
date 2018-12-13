@@ -33,18 +33,30 @@ public class Score {
         root.getChildren().add(getLifes());
     }
 
+	/**
+	 * @return The current score as a Text object
+	 */
 	public Text getScore() {
 		return score;
 	}
 
+	/**
+	 * @param score Set the score
+	 */
 	public void setScore(Text score) {
 		this.score = score;
 	}
 
+	/**
+	 * @return The current number of lifes as a Text object
+	 */
 	public Text getLifes() {
 		return lifes;
 	}
 
+	/**
+	 * @param lifes Set lifes to this
+	 */
 	public void setLifes(Text lifes) {
 		this.lifes = lifes;
 	}

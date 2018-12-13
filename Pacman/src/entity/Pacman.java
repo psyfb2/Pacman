@@ -10,8 +10,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 /**
- * Extends Circle
- * Simple class for a yellow circle with radius of 25 pixels
+ * Represents pacman as an image
  * @author psyfb2
  */
 public class Pacman {
@@ -42,7 +41,7 @@ public class Pacman {
     }
     
     /**
-     * Changes position of the pacman to the (x, y) coordinate given in the constructor
+     * Changes position of the pacman to the (x, y) coordinate to initial x, y positions
      */
     public void resetPosition() {
     	this.setCenterX(initialPositionX);
@@ -132,4 +131,20 @@ public class Pacman {
     public void facePacmanUp() {
     	imageView.setRotate(270);
     }
+
+	/**
+	 * Set the initial pacman x position, when reset() method is called x position will be changed to initialPositionX
+	 * @param initialPositionX Initial x position on the screen
+	 */
+	public void setInitialPositionX(double initialPositionX) {
+		this.initialPositionX = initialPositionX;
+	}
+	
+	/**
+	 * Set the initial pacman y position, when reset() method is called y position will be changed to initialPositionY
+	 * @param initialPositionY Initial y position on the screen
+	 */
+	public void setInitialPositionY(double initialPositionY) {
+		this.initialPositionY = initialPositionY;
+	}
 }

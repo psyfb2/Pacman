@@ -95,7 +95,7 @@ public class Maze {
     
     /**
      * Adds an invisible barObstacle which is intended to only be visible to ghosts
-     * @param o
+     * @param o BarObstacle to add
      */
     public void addGhostObstacle(BarObstacle o) {
     	this.ghostObstacles.add(o);
@@ -103,7 +103,7 @@ public class Maze {
     
     /**
      * Displays all BarObstacles (excluding ghost bar obstacles) contained within the internal BarObstacle set.
-     * @param root
+     * @param root Root
      */
     public void addAllObstaclesToRoot(Group root) {
     	root.getChildren().addAll(obstacles);
@@ -116,4 +116,11 @@ public class Maze {
     	obstacles.clear();
     	ghostObstacles.clear();
     }
+
+	/**
+	 * @return internal BarObstacle HashSet
+	 */
+	public Set<BarObstacle> getObstacles() {
+		return obstacles;
+	}
 }

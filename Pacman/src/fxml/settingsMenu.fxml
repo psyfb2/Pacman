@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.paint.RadialGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1225.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.SettingsMenuController">
+   <children>
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="559.0" layoutY="53.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../recources/images/settings.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="50.0" layoutY="248.0" prefHeight="25.0" prefWidth="113.0" text="Maze Color" textFill="WHITE" />
+      <Label layoutX="50.0" layoutY="286.0" prefHeight="25.0" prefWidth="113.0" text="Difficulty" textFill="WHITE" />
+      <Label layoutX="556.0" layoutY="335.0" prefHeight="30.0" prefWidth="118.0" text="Chose Maze" textFill="WHITE">
+         <font>
+            <Font size="20.0" />
+         </font></Label>
+      <RadioButton fx:id="red" layoutX="138.0" layoutY="252.0" mnemonicParsing="false" onAction="#colorRadioButtonChanged" text="Red" textFill="RED" />
+      <RadioButton fx:id="green" layoutX="196.0" layoutY="252.0" mnemonicParsing="false" onAction="#colorRadioButtonChanged" text="Green" textFill="LIME" />
+      <RadioButton fx:id="blue" layoutX="274.0" layoutY="252.0" mnemonicParsing="false" onAction="#colorRadioButtonChanged" text="Blue" textFill="BLUE" />
+      <RadioButton fx:id="purple" layoutX="338.0" layoutY="252.0" mnemonicParsing="false" onAction="#colorRadioButtonChanged" text="Purple" textFill="PURPLE" />
+      <RadioButton fx:id="pink" layoutX="403.0" layoutY="252.0" mnemonicParsing="false" onAction="#colorRadioButtonChanged" text="Pink" textFill="PINK" />
+      <RadioButton fx:id="orange" layoutX="468.0" layoutY="252.0" mnemonicParsing="false" onAction="#colorRadioButtonChanged" text="Orange" textFill="ORANGE" />
+      <RadioButton fx:id="rainbow" layoutX="546.0" layoutY="252.0" mnemonicParsing="false" onAction="#colorRadioButtonChanged" text="Rainbow">
+         <textFill>
+            <RadialGradient centerX="0.4888888888888889" centerY="0.4857142857142857" radius="0.5">
+               <stops>
+                  <Stop color="#c70c0c" />
+                  <Stop color="#c70c0c" offset="0.06912351384445228" />
+                  <Stop color="#8c10c2" offset="0.5230082553225104" />
+                  <Stop color="#26268c" offset="0.697594501718213" />
+                  <Stop color="#25258d" offset="1.0" />
+               </stops>
+            </RadialGradient>
+         </textFill>
+      </RadioButton>
+      <RadioButton fx:id="random" layoutX="629.0" layoutY="252.0" mnemonicParsing="false" onAction="#colorRadioButtonChanged" text="Random" textFill="WHITE" />
+      <RadioButton fx:id="easy" layoutX="137.0" layoutY="290.0" mnemonicParsing="false" onAction="#difficultyRadioButtonChanged" text="Easy" textFill="WHITE" />
+      <RadioButton fx:id="medium" layoutX="195.0" layoutY="290.0" mnemonicParsing="false" onAction="#difficultyRadioButtonChanged" text="Medium" textFill="WHITE" />
+      <RadioButton fx:id="hard" layoutX="272.0" layoutY="290.0" mnemonicParsing="false" onAction="#difficultyRadioButtonChanged" text="Hard" textFill="WHITE" />
+      <Button layoutY="665.0" mnemonicParsing="false" onAction="#menuButtonClicked" prefHeight="35.0" prefWidth="133.0" text="Main Menu" />
+      <BorderPane fx:id="cookieComplexBorder" layoutX="48.0" layoutY="386.0" prefHeight="180.0" prefWidth="355.0" style="-fx-border-color: yellow; -fx-border-style: solid; -fx-border-width: 6;">
+         <center>
+            <ImageView fitHeight="200.0" fitWidth="350.0" onMouseClicked="#cookieComplexClicked" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+               <image>
+                  <Image url="@../../recources/images/cookieComplex.PNG" />
+               </image></ImageView>
+         </center>
+      </BorderPane>
+      <BorderPane fx:id="ghostTownBorder" layoutX="452.0" layoutY="386.0" prefHeight="180.0" prefWidth="355.0" style="-fx-border-color: black; -fx-border-style: solid; -fx-border-width: 6;">
+         <center>
+            <ImageView fitHeight="200.0" fitWidth="350.0" onMouseClicked="#ghostTownClicked" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+               <image>
+                  <Image url="@../../recources/images/ghostTown.PNG" />
+               </image>
+            </ImageView>
+         </center>
+      </BorderPane>
+      <BorderPane fx:id="greasyGroveBorder" layoutX="856.0" layoutY="386.0" prefHeight="180.0" prefWidth="355.0" style="-fx-border-color: black; -fx-border-style: solid; -fx-border-width: 6;">
+         <center>
+            <ImageView fitHeight="200.0" fitWidth="350.0" onMouseClicked="#greasyGroveClicked" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+               <image>
+                  <Image url="@../../recources/images/greasyGrove.PNG" />
+               </image>
+            </ImageView>
+         </center>
+      </BorderPane>
+      <Label layoutX="153.0" layoutY="591.0" text="Cookie Complex" textFill="WHITE">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="562.0" layoutY="591.0" text="Ghost Town" textFill="WHITE">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="961.0" layoutY="591.0" text="Greasy Grove" textFill="WHITE">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

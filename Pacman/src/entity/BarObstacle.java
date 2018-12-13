@@ -15,13 +15,14 @@ public class BarObstacle extends Rectangle {
      * Refactored: removed params orientation and length since every BarOstacle is 25x25px
      * @param x x coordinate
      * @param y y coordinate
+     * @param color color of the obstacle e.g. Color.CADETBLUE
      */
-    public BarObstacle(double x, double y) {
+    public BarObstacle(double x, double y, Color color) {
         this.setX(x);
         this.setY(y);
         this.setHeight(BarObstacle.THICKNESS);
         this.setWidth(BarObstacle.THICKNESS);
-        this.setFill(Color.CADETBLUE);
+        this.setFill(color);
         this.setStrokeWidth(3);
     }
 }

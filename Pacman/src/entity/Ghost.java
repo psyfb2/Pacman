@@ -25,6 +25,7 @@ public class Ghost implements Runnable {
     private int timesWalked;
     private RandomDirection rand;
     private ImageView imageView;
+    private int ghostSpeed;
     
     /**
      * Constructor
@@ -33,15 +34,17 @@ public class Ghost implements Runnable {
      * @param color colour of the ghost
      * @param maze maze in which the ghost will be in
      * @param gameManager gameManager in which the ghost will be in
+     * @param ghostSpeed how fast the ghosts should go, e.g. 5 is a good speed
      * @throws FileNotFoundException if fileName is not found
      */
-    public Ghost(double x, double y, Maze maze, GameManager gameManager, String fileName) throws FileNotFoundException {
+    public Ghost(double x, double y, Maze maze, GameManager gameManager, String fileName, int ghostSpeed) throws FileNotFoundException {
     	Image image = new Image(new FileInputStream(fileName));
     	imageView = new ImageView(image);
     	imageView.setFitWidth(50);
     	imageView.setFitHeight(50);
         this.setX(x);
         this.setY(y);
+        this.ghostSpeed = ghostSpeed;
         this.maze = maze;
         this.gameManager = gameManager;
         this.timesWalked = 0;
@@ -114,7 +117,7 @@ public class Ghost implements Runnable {
      * @param padding number of pixels to pad around the ghost when checking for collisions
      */
     private void moveUntilYouCant(String whereToGo, String whereToChangeTo, double leftEdge, double topEdge, double rightEdge, double bottomEdge, double padding) {
-        double step = 10;
+        double step = ghostSpeed;
         switch (whereToGo) {
             case "left":
             	// if the maze is not touching the left of the ghost then move ghost to the left by 5 pixels
@@ -220,10 +223,16 @@ public class Ghost implements Runnable {
         this.animation.start();
     }
     
+    /**
+     * @param root Add ghosts to this root
+     */
     public void displayGhost(Group root) {
     	root.getChildren().add(imageView);
     }
     
+    /**
+     * @param root Remove ghosts from this root
+     */
     public void unDisplayGhost(Group root) {
     	root.getChildren().remove(imageView);
     }
