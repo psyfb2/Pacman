@@ -37,7 +37,7 @@ public class Pacman {
     	this.setCenterY(y);
     	imageView.setFitWidth(radius*2);
     	imageView.setFitHeight(radius*2);
-    	imageView.setPreserveRatio(true);  
+    	imageView.setPreserveRatio(true); 
     }
     
     /**
