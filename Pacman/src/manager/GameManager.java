@@ -52,6 +52,7 @@ public class GameManager {
     private String difficulty;
     private final String pacmanFileName = "./recources/images/pacmanGif.gif";
 
+
     /**
      * Constructor to initialise gameManager
      * @param root Used to display entities
@@ -227,7 +228,6 @@ public class GameManager {
     		
     		Scene mainMenu = (Scene) event.getSource();
             mainMenu.getStylesheets().add(getClass().getResource("/fxml/style.css").toExternalForm());
-            
             mainMenu.setRoot(root);
         }
     }
