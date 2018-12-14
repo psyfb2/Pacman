@@ -3,8 +3,8 @@
 G52SWM Pacman coursework, Fady Benattayallah
 
 To open this project using eclipse IDE
-Download as .ZIP
-Go to Eclipse, Import -> Existing project into workspace -> Chose the archive file
+1. Download as .ZIP
+2. Go to Eclipse, Import -> Existing project into workspace -> Chose the archive file
 
 Main Features Added:
 1. Main menu
