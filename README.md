@@ -15,5 +15,5 @@ Main Features Added:
 6. Entity images
 7. Option to chose different difficulties
 8. Permanent LeaderBoard for top 5 legendary players only!
-9. Code refactoring and clean up
+9. Code refactoring, clean up
 and much more....
