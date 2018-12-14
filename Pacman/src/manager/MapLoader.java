@@ -137,7 +137,12 @@ public class MapLoader {
 				
 			case 'g': // ghost
 				if(ghostSet != null) {
-					ghostSet.add(new Ghost(BarObstacle.THICKNESS * (column - 0.5), BarObstacle.THICKNESS * (row - 0.5), maze, gameManager, ghostImageName + ghostCounter + ".png", ghostSpeed));
+					if(ghostCounter == 4) {
+						ghostSet.add(new Ghost(BarObstacle.THICKNESS * (column - 0.5), BarObstacle.THICKNESS * (row - 0.5), maze, gameManager, ghostImageName + ghostCounter + ".gif", ghostSpeed));
+					}
+					else {
+						ghostSet.add(new Ghost(BarObstacle.THICKNESS * (column - 0.5), BarObstacle.THICKNESS * (row - 0.5), maze, gameManager, ghostImageName + ghostCounter + ".png", ghostSpeed));
+					}
 					ghostCounter = (ghostCounter + 1) % maxNumberOfGhosts;
 				}
 				break;

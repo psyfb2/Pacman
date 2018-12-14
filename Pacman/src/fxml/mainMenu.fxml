@@ -14,5 +14,10 @@
             <Image url="@../../recources/images/logo.png" />
          </image>
       </ImageView>
+      <ImageView fitHeight="162.0" fitWidth="415.0" layoutX="403.0" layoutY="468.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../recources/images/ghosts.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

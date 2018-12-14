@@ -20,6 +20,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import controller.LeaderBoardMenuController;
+import controller.MainMenuController;
 import entity.*;
 
 /**
@@ -49,7 +50,7 @@ public class GameManager {
     private String scoreFileName;
     private String mapName;
     private String difficulty;
-    private final String pacmanFileName = "./recources/images/pacman.png";
+    private final String pacmanFileName = "./recources/images/pacman.gif";
 
     /**
      * Constructor to initialise gameManager
@@ -141,7 +142,7 @@ public class GameManager {
         for (Ghost ghost : ghosts) {
             ghost.unDisplayGhost(root);
         }
-        javafx.scene.text.Text endGame = new javafx.scene.text.Text("Game Over, press ESC to restart");
+        javafx.scene.text.Text endGame = new javafx.scene.text.Text("Game Over, press ESC to restart, SPACE to Main Menu");
         endGame.setX(BarObstacle.THICKNESS * 3);
         endGame.setY(BarObstacle.THICKNESS * 28);
         endGame.setFont(Font.font("Arial", 40));
@@ -209,6 +210,25 @@ public class GameManager {
             this.score = 0;
             this.cookiesEaten = 0;
             gameEnded = false;
+        }
+        else if(event.getCode() == KeyCode.SPACE && gameEnded) {
+        	// go to the main menu
+        	FXMLLoader loader = new FXMLLoader();
+    		loader.setLocation(getClass().getResource("/fxml/mainMenu.fxml"));
+    		Parent root;
+    		try {
+				root = loader.load();
+			} catch (IOException e) {
+				e.printStackTrace();
+				return;
+			}
+    		
+    		MainMenuController c = loader.getController();
+    		c.init(difficulty, mapFileName, scoreFileName, mapName, mazeColor);
+    		
+    		Scene mainMenu = (Scene) event.getSource();
+            mainMenu.getStylesheets().add(getClass().getResource("/fxml/style.css").toExternalForm());
+            mainMenu.setRoot(root);
         }
     }
 
