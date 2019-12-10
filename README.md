@@ -16,5 +16,6 @@ Main Features Added on top of base pacman game:
 9. Code refactoring, clean up and much more....
 
 Thanks For Playing!
+
 By Fady Benattayallah
 
