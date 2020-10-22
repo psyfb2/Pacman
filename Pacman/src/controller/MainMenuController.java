@@ -12,6 +12,7 @@ import javafx.scene.Scene;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import main.Main;
 import manager.GameManager;
 
 /**
@@ -22,8 +23,8 @@ public class MainMenuController {
 	// default values
 	private String difficulty = "easy";
 	private Color color = Color.CADETBLUE;
-	private String mapFileName = "./recources/maps/cookieComplex.txt";
-	private String scoreFileName = "./recources/scores/cookieComplexScores.txt";
+	private String mapFileName = Main.MAPPATH + "cookieComplex.txt";
+	private String scoreFileName = Main.SCOREPATH + "cookieComplexScores.txt";
 	private String mapName = "Cookie Complex";
 	
 	/**
@@ -74,7 +75,7 @@ public class MainMenuController {
 	/**
 	 * Call this method to pass data to this controller.
 	 * @param difficulty Difficulty of the pacman game, "easy", "medium" or "hard".
-	 * @param mapFileName File name of the map to load (e.g. "./recources/maps/cookieComplex.txt")
+	 * @param mapFileName File name of the map to load (e.g. "./resources/maps/cookieComplex.txt")
 	 * @param scoreFileName File name of the leaderboard for the provided map
 	 * @param mapName Name of the map (not a file name just a name to display to user)
 	 * @param color Color which the maze should have when the pacman game starts

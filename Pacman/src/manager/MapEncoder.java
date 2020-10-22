@@ -15,7 +15,7 @@ import java.util.ArrayList;
 public class MapEncoder {
 	/**
 	 * Perform Run Length Encoding on a map
-	 * @param fileName File name of the map (e.g. "./recources/maps/map1.txt")
+	 * @param fileName File name of the map (e.g. "./resources/maps/map1.txt")
 	 * @throws IOException File name not found
 	 */
 	public static void RunLengthEncode(String fileName) throws IOException {

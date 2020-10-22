@@ -50,7 +50,7 @@ public class GameManager {
     private String scoreFileName;
     private String mapName;
     private String difficulty;
-    private final String pacmanFileName = "./recources/images/pacmanGif.gif";
+    private final String pacmanFileName = Main.IMAGEPATH + "pacmanGif.gif";
 
 
     /**

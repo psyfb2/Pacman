@@ -15,7 +15,7 @@
    <children>
       <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="559.0" layoutY="53.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../recources/images/settings.png" />
+            <Image url="@../../resources/images/settings.png" />
          </image>
       </ImageView>
       <Label layoutX="50.0" layoutY="248.0" prefHeight="25.0" prefWidth="113.0" text="Maze Color" textFill="WHITE" />
@@ -52,7 +52,7 @@
          <center>
             <ImageView fitHeight="200.0" fitWidth="350.0" onMouseClicked="#cookieComplexClicked" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
                <image>
-                  <Image url="@../../recources/images/cookieComplex.PNG" />
+                  <Image url="@../../resources/images/cookieComplex.PNG" />
                </image></ImageView>
          </center>
       </BorderPane>
@@ -60,7 +60,7 @@
          <center>
             <ImageView fitHeight="200.0" fitWidth="350.0" onMouseClicked="#ghostTownClicked" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
                <image>
-                  <Image url="@../../recources/images/ghostTown.PNG" />
+                  <Image url="@../../resources/images/ghostTown.PNG" />
                </image>
             </ImageView>
          </center>
@@ -69,7 +69,7 @@
          <center>
             <ImageView fitHeight="200.0" fitWidth="350.0" onMouseClicked="#greasyGroveClicked" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
                <image>
-                  <Image url="@../../recources/images/greasyGrove.PNG" />
+                  <Image url="@../../resources/images/greasyGrove.PNG" />
                </image>
             </ImageView>
          </center>

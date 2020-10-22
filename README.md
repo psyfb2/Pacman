@@ -1,7 +1,7 @@
 # Pacman
 Demo Video: https://youtu.be/Veac4Kh14ls
 
-To open this project using eclipse IDE with Java 8
+To open this project using eclipse IDE (built with Java 8 and JavaFX 11)
 1. Download as .ZIP
 2. Go to Eclipse, Import -> Existing project into workspace -> Chose the archive file
 

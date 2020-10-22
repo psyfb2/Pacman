@@ -16,6 +16,7 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import main.Main;
 import random.RandomColor;
 
 /**
@@ -45,14 +46,14 @@ public class SettingsMenuController implements Initializable {
 	@FXML private BorderPane ghostTownBorder;
 	@FXML private BorderPane greasyGroveBorder;
 
-    private final String cookieComplexFileName = "./recources/maps/cookieComplex.txt";
-    private final String cookieComplexScoreFileName = "./recources/scores/cookieComplexScores.txt";
+    private final String cookieComplexFileName = Main.MAPPATH + "cookieComplex.txt";
+    private final String cookieComplexScoreFileName = Main.SCOREPATH + "cookieComplexScores.txt";
     
-    private final String ghostTownFileName = "./recources/maps/ghostTown.txt";
-    private final String ghostTownScoreFileName = "./recources/scores/ghostTownScores.txt";
+    private final String ghostTownFileName = Main.MAPPATH + "ghostTown.txt";
+    private final String ghostTownScoreFileName = Main.SCOREPATH + "ghostTownScores.txt";
     
-    private final String greasyGroveFileName = "./recources/maps/greasyGrove.txt";
-    private final String greasyGroveScoreFileName = "./recources/scores/greasyGroveScores.txt";
+    private final String greasyGroveFileName = Main.MAPPATH + "greasyGrove.txt";
+    private final String greasyGroveScoreFileName = Main.SCOREPATH + "greasyGroveScores.txt";
     
 	private String selectedMap = cookieComplexFileName; // cookie complex is selected by default
 	private String selectedMapScore = cookieComplexScoreFileName;

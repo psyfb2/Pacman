@@ -1,19 +1,19 @@
 package main;
 
+import java.io.File;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-/*
- * 5. create class diagram
- * 6. refactor code by introducing design patterns etc
- * 7. update class diagram
- * 10. create video
- */
-public class Main extends Application {
 
+public class Main extends Application {
+	public static final String RESPATH = new File("").getAbsolutePath() + File.separator + "Pacman" + File.separator + "resources";
+	public static final String IMAGEPATH = new File("").getAbsolutePath() + File.separator + "Pacman" + File.separator + "resources" + File.separator + "images" + File.separator;
+	public static final String MAPPATH = new File("").getAbsolutePath() + File.separator + "Pacman" + File.separator + "resources" + File.separator + "maps" + File.separator;
+	public static final String SCOREPATH = new File("").getAbsolutePath() + File.separator + "Pacman" + File.separator + "resources" + File.separator + "scores" + File.separator;
 	public static final int WIDTH = 1225;
 	public static final int HEIGHT = 700;
 	

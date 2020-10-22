@@ -11,6 +11,7 @@ import org.junit.Test;
 
 import leaderboard.LeaderBoard;
 import leaderboard.PacmanLeaderBoard;
+import main.Main;
 
 public class PacmanLeaderBoardTest {
 	LeaderBoard l;
@@ -18,7 +19,7 @@ public class PacmanLeaderBoardTest {
 	public void init(int numOfScores) {
 		// make sure text file is empty
 		try {
-			BufferedWriter scoreTxt = new BufferedWriter(new FileWriter("./recources/scores/test.txt"));
+			BufferedWriter scoreTxt = new BufferedWriter(new FileWriter(Main.SCOREPATH + "test.txt"));
 			scoreTxt.write("");
 			for(int i = 0; i < numOfScores; i++) {
 				scoreTxt.write("Hello I'm a Score!123");
@@ -27,7 +28,7 @@ public class PacmanLeaderBoardTest {
 				scoreTxt.newLine();
 			}
 			scoreTxt.close();
-			l = new PacmanLeaderBoard("./recources/scores/test.txt", 5);
+			l = new PacmanLeaderBoard(Main.SCOREPATH + "test.txt", 5);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

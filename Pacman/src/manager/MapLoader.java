@@ -12,6 +12,7 @@ import entity.Ghost;
 import entity.Maze;
 import entity.Pacman;
 import javafx.scene.paint.Color;
+import main.Main;
 import random.RandomColor;
 
 /**
@@ -25,16 +26,16 @@ public class MapLoader {
 	private String ghostImageName;
 	
 	/**
-	 * Default Constructor, maxNumberOfGhosts is 5, ghostImageName = "./recources/images/ghost".
+	 * Default Constructor, maxNumberOfGhosts is 5, ghostImageName = "./resources/images/ghost".
 	 */
 	public MapLoader() {
 		this.maxNumberOfGhosts = 5;
-		this.ghostImageName = "./recources/images/ghost";
+		this.ghostImageName = Main.IMAGEPATH + "ghost";
 	}
 	
 	/**
 	 * Constructor
-	 * @param ghostImageName File name for ghost images excluding the ghost number. E.g. "./recources/images/ghost" will cause "./recources/images/ghost0.png", "./recources/images/ghost1.png", etc to get loaded
+	 * @param ghostImageName File name for ghost images excluding the ghost number. E.g. "./resources/images/ghost" will cause "./recources/images/ghost0.png", "./recources/images/ghost1.png", etc to get loaded
 	 * @param maxNumberOfGhosts How many ghost images there are with the base name given in ghostImageName variable.
 	 * Ghost images should also be .png files.
 	 */
@@ -103,7 +104,7 @@ public class MapLoader {
 	 * @param gameManager GameManager in which the entities are aggregated
 	 * @param ghostSpeed Speed of the ghosts (e.g. 5)
 	 * @param mazeColor Color of the BarObstacle objects which are added to the maze, null for a random color for each BarObstacle
-	 * @throws FileNotFoundException ghostImageName+ghostCounter was not found. Default ghostImageName is "./recources/images/ghost" and ghostCounter is appended to load different ghost images.
+	 * @throws FileNotFoundException ghostImageName+ghostCounter was not found. Default ghostImageName is "./resources/images/ghost" and ghostCounter is appended to load different ghost images.
 	 */
 	private void charToEntity(char c, int column, int row, Maze maze, Set<Cookie> cookieSet, Set<Ghost> ghostSet, Pacman pacman, GameManager gameManager, int ghostSpeed, Color mazeColor) throws FileNotFoundException {
 		switch(c) {
