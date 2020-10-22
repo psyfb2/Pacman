@@ -5,7 +5,7 @@ To open this project using eclipse IDE with Java 8
 1. Download as .ZIP
 2. Go to Eclipse, Import -> Existing project into workspace -> Chose the archive file
 
-Main Features Added on top of base pacman game:
+Main Features in addition to Pacman game:
 1. Main menu
 2. Settings menu
 3. Map read from file
