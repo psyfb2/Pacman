@@ -1,6 +1,7 @@
 # Pacman
+Demo Video: https://youtu.be/Veac4Kh14ls
 
-To open this project using eclipse IDE
+To open this project using eclipse IDE with Java 8
 1. Download as .ZIP
 2. Go to Eclipse, Import -> Existing project into workspace -> Chose the archive file
 
